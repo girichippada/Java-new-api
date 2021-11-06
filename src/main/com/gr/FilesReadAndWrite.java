@@ -10,13 +10,12 @@ public class FilesReadAndWrite {
         Path sampleFilePath = Paths.get("./resources/Sample.txt");
         String sampleFileContent = Files.readString(sampleFilePath);
 
-        System.out.println("Content is: "  + sampleFileContent);
+        System.out.println("Content is: " + sampleFileContent);
 
         Path newSampleFilePath = Paths.get("./resources/Sample-new.txt");
         Files.writeString(newSampleFilePath, sampleFileContent.replaceAll("Line", "Line Number "));
 
-        System.out.println("New Content is: "  + newSampleFilePath);
-
+        System.out.println("New Content is: " + newSampleFilePath);
 
     }
 }
