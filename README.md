@@ -7,7 +7,7 @@ This Demonstrates some major Java New Features starting from Java 9 to Java 17 a
 2. **G1 Garbage Collector**: The default GC from JDK 9 onwards
 3. Compact Strings: Uses <code>byte[]</code> to store stings instead of <code>char[]</code> as in most of the java apps, strings use 1 byte or 8 bits to improve heap consumption
 4. Use **<code>jdeps</code>** tool to analyze the Java app dependencies and it also suggests replacements for any JDK internal APIs usage
-5. Use **<code>jlink</code>** using <code>jlink</code> module descriptor or a custom <code>module-info.class</code> file to create a custom run time java image of our modular applications
+5. Use **<code>jlink</code>** using <code>jlink</code> module descriptor or a custom <code>module-info.class</code> file to create a custom run time Java image of our modular applications
 6. **<code>jShell</code>** - A Java command line tool for developers to use a shell to tryout any Java code without having to create a class and main method
 7. introduction of allowing **private default methods in interfaces**
 8. **<code>takeWhile</code>** method for collections API to do an operation only until a condition is satisfied
@@ -31,10 +31,17 @@ This Demonstrates some major Java New Features starting from Java 9 to Java 17 a
    2. specifically for local variable declarations and try with resource variables declarations
    3. Not allowed for catch block, method parameter types, instance, or static variables as the type of those variables cannot be derived
    4. Should follow the style guide as using var for all local variables doesn't improve code readability
-2. **copyOf method** introduced for list, set, map interfaces for the ability to copy the immutable copy of the collection
-     1. The unmodifiableXXX() method return unmodifiable view where if the souce collection is changed, then the copied collcetion object data will be changed
+2. **copyOf method** introduced for the list, set, and map interfaces for the ability to copy the immutable copy of the collection
+     1. The unmodifiableXXX() method returns an unmodifiable view where if the source collection is changed, then the copied collection object data will be changed
      2. the copyOf collection object values won't change if the source collection object is changed
-3. **orEleThrow()** introduced in Optional class to ease of throwing exception when we don't have a value of an optional object so we can replace: <code>if(optionalObj.isPresent()) return optionalObj.get();}</code> with <code> return optionalObj.orElseThrow() </code>
+3. **orEleThrow()** introduced in Optional class to ease of throwing an exception when we don't have a value of an optional object so we can replace: <code>if(optionalObj.isPresent()) return optionalObj.get();}</code> with <code> return optionalObj.orElseThrow() </code>
+4. **Class Data sharing(CDS):** to enable create a shared archive file of classes that can be reused by other JVM instances
+5. **Application Class Data Sharing(App CDS)**: To allow create shared archive files of application-specific or third-party classes that can be used by other JVM instances
+      1. Steps: Create a .lst classes list
+      2. Create a .jsa dump file of the shared classes list(.lst)
+      3. Using App CDS: use the .jsa shared archive file:
+         <img width="1922" alt="image" src="https://github.com/girichippada/Java-new-api/assets/57904222/6520d9b3-f371-44fb-ae96-8cc7b9b14fe8">
+
    
 Reference: https://docs.oracle.com/javase/9/whatsnew/toc.htm#JSNEW-GUID-825576B5-203C-4C8D-85E5-FFDA4CA0B346
 
