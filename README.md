@@ -35,12 +35,18 @@ This Demonstrates some major Java New Features starting from Java 9 to Java 17 a
      1. The unmodifiableXXX() method returns an unmodifiable view where if the source collection is changed, then the copied collection object data will be changed
      2. the copyOf collection object values won't change if the source collection object is changed
 3. **orEleThrow()** introduced in Optional class to ease of throwing an exception when we don't have a value of an optional object so we can replace: <code>if(optionalObj.isPresent()) return optionalObj.get();}</code> with <code> return optionalObj.orElseThrow() </code>
-4. **Class Data sharing(CDS):** to enable create a shared archive file of classes that can be reused by other JVM instances
-5. **Application Class Data Sharing(App CDS)**: To allow create shared archive files of application-specific or third-party classes that can be used by other JVM instances
+4. **Class Data sharing(CDS):** to enable create a shared archive file of classes that can be reused by other JVM instances to improve the startup time of JVM
+5. **Application Class Data Sharing(App CDS)**: To allow create shared archive files of application-specific or third-party classes that can be used by other JVM instances to improve the startup time of JVM
       1. Steps: Create a .lst classes list
       2. Create a .jsa dump file of the shared classes list(.lst)
       3. Using App CDS: use the .jsa shared archive file:
-         <img width="1922" alt="image" src="https://github.com/girichippada/Java-new-api/assets/57904222/6520d9b3-f371-44fb-ae96-8cc7b9b14fe8">
+6. **Improved container awareness: ** JVM can know if it is running inside a container
+     1. To get to know how much memory a JVM is consuming:
+          1. docker run -m 100MB openjdk:8u121 java -XshowSettings:vm -version (JDK <10 consuming more heap than allocated for the container)
+          2. docker run -m 400MB openjdk:10 java -XshowSettings:vm -version (JDK >=10 consuming heap as per allocated heap size to the container)
+          3. Java 8 update 191 has the fix so, if we are using java: openjdk:9u191, it has the fix so can allocate heap size as per container limit
+7. **new jvm flag: -XX:Active ProcessorsCount:<count>**: to override no of CPUs for the JVM
+   
 
    
 Reference: https://docs.oracle.com/javase/9/whatsnew/toc.htm#JSNEW-GUID-825576B5-203C-4C8D-85E5-FFDA4CA0B346
