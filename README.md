@@ -45,7 +45,33 @@ This Demonstrates some major Java New Features starting from Java 9 to Java 17 a
           1. docker run -m 100MB openjdk:8u121 java -XshowSettings:vm -version (JDK <10 consuming more heap than allocated for the container)
           2. docker run -m 400MB openjdk:10 java -XshowSettings:vm -version (JDK >=10 consuming heap as per allocated heap size to the container)
           3. Java 8 update 191 has the fix so, if we are using java: openjdk:9u191, it has the fix so can allocate heap size as per container limit
-7. **new jvm flag: -XX:Active ProcessorsCount:<count>**: to override no of CPUs for the JVM
+7. **new JVM flag: -XX:Active ProcessorsCount:<count>**: to override no of CPUs for the JVM
+
+## Java 11:
+
+1. **<code>HttpClient</code>:** To replace existing HttpURLConnection API which provides builder pattern to make HttpRequests using sync and async methods.
+      1. Incubated in jdk 9 but standardized in jdk 11
+      2. Compact API which support Http1.1 and Http1.2
+      3. Supports both sync and asyc execution
+      4. supports reactive streams
+2. **Local variales for lamba parameters:**
+      1. can use var for lamba
+      2. Can use annotations for lamba params
+3. <code>repeat method in string</code>: to repeat a string operation n no of times: <code> "abc".repeat(5) : "abcabcabcabcabcabc"</code>
+4. <code>strip method</code>: to remove all possible whitespaces of a string . supports all Unicode of white spaces
+5. <code>lines method added to String class</code>: splits by line characters and returns stream of strings: <code> multipleLines.lines(System.out::println);</code>
+      1. faster than the split method as it returns a stream
+6. **Epsilon GC is introduced:** Epsilon GC is a no-op GC which means it only allocates memory but not reclaims memory. It will terminate JVM when max heap usage is reached.
+       1. Useful for performance testing
+       2. Useful for ultra latency applications that have sensitive about reserved memory allocation
+7. **ZGC is introduced:** ZGC is the most concurrent GC
+       1. Most concurrent GC
+       2. Max pause time is 10ms
+       3. Concurrent collector
+       4. Pause time does not increase with the size of the heap
+       5. can handle terra bytes of the heap size
+       6. experimental in JDK 11 and only released for Linux x86 64-bit platform
+8. **Single file source code file:** no need to use javac to compile. can use directly with the java command which compiles in in-memory for single source files
    
 
    
