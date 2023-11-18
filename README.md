@@ -72,6 +72,10 @@ This Demonstrates some major Java New Features starting from Java 9 to Java 17 a
        5. can handle terra bytes of the heap size
        6. experimental in JDK 11 and only released for Linux x86 64-bit platform
 8. **Single file source code file:** no need to use javac to compile. can use directly with the java command which compiles in in-memory for single source files
+9. **Files.readString and Files.writeString:** methods introduced to read file data as string and write string to file respectively. readString and writeString methods reads and writes whole file data at once. if we are dealing with large files, consider using Files.lines method e.g., Files.lines(Paths.get(FILE_PATH);
+10. **Predicate.not:** predicate.not method is introduced to do a negate in a redable way. E.g., line.filter(Predicate.not(String::isBlank).collect(Collectors.toList());
+11. **Flight Recorder:** to start Flight recorder, use command: java -XX:StartFlightRecording=duration=60s,filename=recording.jfr APP. To start flight recording for already running jvm, first run: jcmd and get the PID. then, jcmd <PID> JFR.start duration=60s filename=recording.jfr
+12. **JDK Mission Control:** Can be used to visualize jfr files data
    
 
    
