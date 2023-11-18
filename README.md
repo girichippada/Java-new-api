@@ -6,9 +6,9 @@ This Demonstrates some major Java New Features starting from Java 9 to Java 17 a
 1. **Factory methods in Collections**: 'of' method for List, Set, and map: <code>List.of(varargs)</code>
 2. **G1 Garbage Collector**: The default GC from JDK 9 onwards
 3. Compact Strings: Uses <code>byte[]</code> to store stings instead of <code>char[]</code> as in most of the java apps, strings use 1 byte or 8 bits to improve heap consumption
-4. Use **<code>jdeps</code>** tool to analyze the Java app dependencies and it also suggests replacements for any JDK internal APIs usage
+4. Use **<code>jdeps</code>** tool to analyze the Java app dependencies and it also suggests replacements for any JDK internal API usage
 5. Use **<code>jlink</code>** using <code>jlink</code> module descriptor or a custom <code>module-info.class</code> file to create a custom run time Java image of our modular applications
-6. **<code>jShell</code>** - A Java command line tool for developers to use a shell to tryout any Java code without having to create a class and main method
+6. **<code>jShell</code>** - A Java command line tool for developers to use a shell to try any Java code without having to create a class and main method
 7. introduction of allowing **private default methods in interfaces**
 8. **<code>takeWhile</code>** method for collections API to do an operation only until a condition is satisfied
 9. **<code>dropWhile</code>** method added in collections API to drop elements until a condition is satisfied i.e., exclude elements until a condition is satisfied
@@ -28,15 +28,15 @@ This Demonstrates some major Java New Features starting from Java 9 to Java 17 a
 
 1. **Dynamic type inference using var for local variables:** Now we can use var for local variables type of those variables will be derived by Java using its assignment on the right side
    1. Allowed for local variables only
-   2. specifically for local variable declarations and try with resource variables declarations
+   2. specifically for local variable declarations and try with resource variable declarations
    3. Not allowed for catch block, method parameter types, instance, or static variables as the type of those variables cannot be derived
    4. Should follow the style guide as using var for all local variables doesn't improve code readability
 2. **copyOf method** introduced for the list, set, and map interfaces for the ability to copy the immutable copy of the collection
      1. The unmodifiableXXX() method returns an unmodifiable view where if the source collection is changed, then the copied collection object data will be changed
      2. the copyOf collection object values won't change if the source collection object is changed
 3. **orEleThrow()** introduced in Optional class to ease of throwing an exception when we don't have a value of an optional object so we can replace: <code>if(optionalObj.isPresent()) return optionalObj.get();}</code> with <code> return optionalObj.orElseThrow() </code>
-4. **Class Data sharing(CDS):** to enable create a shared archive file of classes that can be reused by other JVM instances to improve the startup time of JVM
-5. **Application Class Data Sharing(App CDS)**: To allow create shared archive files of application-specific or third-party classes that can be used by other JVM instances to improve the startup time of JVM
+4. **Class Data sharing(CDS):** to enable the creation of a shared archive file of classes that can be reused by other JVM instances to improve the startup time of JVM
+5. **Application Class Data Sharing(App CDS)**: To allow the creation of shared archive files of application-specific or third-party classes that can be used by other JVM instances to improve the startup time of JVM
       1. Steps: Create a .lst classes list
       2. Create a .jsa dump file of the shared classes list(.lst)
       3. Using App CDS: use the .jsa shared archive file:
@@ -49,10 +49,10 @@ This Demonstrates some major Java New Features starting from Java 9 to Java 17 a
 
 ## Java 11:
 
-1. **<code>HttpClient</code>:** To replace existing HttpURLConnection API which provides builder pattern to make HttpRequests using sync and async methods.
-      1. Incubated in jdk 9 but standardized in jdk 11
-      2. Compact API which support Http1.1 and Http1.2
-      3. Supports both sync and asyc execution
+1. **<code>HttpClient</code>:** To replace existing HttpURLConnection API which provides a builder pattern to make HttpRequests using sync and async methods.
+      1. Incubated in JDK 9 but standardized in JDK 11
+      2. Compact API which supports Http1.1 and Http1.2
+      3. Supports both sync and async execution
       4. supports reactive streams
 2. **Local variales for lamba parameters:**
       1. can use var for lamba
@@ -71,11 +71,22 @@ This Demonstrates some major Java New Features starting from Java 9 to Java 17 a
        4. Pause time does not increase with the size of the heap
        5. can handle terra bytes of the heap size
        6. experimental in JDK 11 and only released for Linux x86 64-bit platform
-8. **Single file source code file:** no need to use javac to compile. can use directly with the java command which compiles in in-memory for single source files
-9. **Files.readString and Files.writeString:** methods introduced to read file data as string and write string to file respectively. readString and writeString methods reads and writes whole file data at once. if we are dealing with large files, consider using Files.lines method e.g., Files.lines(Paths.get(FILE_PATH);
-10. **Predicate.not:** predicate.not method is introduced to do a negate in a redable way. E.g., line.filter(Predicate.not(String::isBlank).collect(Collectors.toList());
-11. **Flight Recorder:** to start Flight recorder, use command: java -XX:StartFlightRecording=duration=60s,filename=recording.jfr APP. To start flight recording for already running jvm, first run: jcmd and get the PID. then, jcmd <PID> JFR.start duration=60s filename=recording.jfr
+8. **Single file source code file:** no need to use javac to compile. can be used directly with the java command which compiles in in-memory for single source files
+9. **Files.readString and Files.writeString:** methods introduced to read file data as a string and write a string to file respectively. readString and writeString methods read and write whole file data at once. if we are dealing with large files, consider using Files.lines method e.g., Files.lines(Paths.get(FILE_PATH);
+10. **Predicate.not:** predicate.not method is introduced to do a negate in a readable way. E.g., line.filter(Predicate.not(String::isBlank).collect(Collectors.toList());
+11. **Flight Recorder:** To start the Flight recorder, use the command: java -XX:StartFlightRecording=duration=60s,filename=recording.jfr APP. To start flight recording for already running jvm, first run: jcmd and get the PID. then, jcmd <PID> JFR.start duration=60s filename=recording.jfr
 12. **JDK Mission Control:** Can be used to visualize jfr files data
+
+## Java 12:
+
+1. **Compact Number Formatting:** To represent numbers in compact form like 1k for 1000, 1M for 1 million, etc, we can do so by <code>NumberFormat fmt = NumberFormat.getCompactNumberInstance(Locale.US, NumberFormat.style.SHORT); fmt.format(1000); //1K </code>
+2. ***teeing collector:** Provides the ability to multiple collectors for a stream and merge the result. for e.g., <code> List<String> input = List.of("Learning", "Java 12", "Features"); input.stream(Collectors.teeing(Collectors.joining(" "), Collectors.counting(), Statistics::new //passes two collectors data to the merged instance); </code>
+3. **<code>Files.mismatch</code>:** Files.mismatch method introduced to compare two files data. if both file content is equal, then -1 will be returned. if both file size is the same but some mismatch in data, then the first mismatch byte position will be returned. if there is a mismatch in file size then the file having a small size is returned
+4. **Shenandoah Garbage Collector Introduced:** Most concurrent GC with low GC pause time. experimental feature
+5. **indent method introduced in String class:** add n no of spaces to do indentation for each line. <code>input.indent(4);</code>
+6. **transform method introduced in String class:** applies a transformation to a string using a lambda function or a method reference. E.g.,  <code>inout.transform(String::toUpperCase).transform(str -> str.replace("\\W+", "-"));</code>
+7. **Introduction of Java Microbenchmark Harness (JMH):** JMH is developed as a separate project for benchmarking the Java code. When written code with JMH annotations: @Benchmark, JMH runs the code in n (5 by default) of JVMs and n(5 by default) no of iterations for each JVM and produces results for each benchmark method. The higher the score, the better the performance. Very useful for performance-critical areas of the code
+
    
 
    
