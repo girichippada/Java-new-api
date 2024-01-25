@@ -98,9 +98,9 @@ This Demonstrates some major Java New Features starting from Java 9 to Java 17 a
 8. **stripIndent** method added to String Class: Allows incidental white spaces and indents the string. especially useful JSON strings
 9. **translateEscapes** method added to String Class: Allows to remove all escape characters in the string and hence helps to produce readable multi-line string which has escape characters in it:
    <pre>
-      inputString <br>
-         .filter(Predicate.not(String::isEmpty)) <br>
-         .map(String.translateEscapes)   <br>
+      inputString
+         .filter(Predicate.not(String::isEmpty))
+         .map(String.translateEscapes)
          .collect(Collectors.groupingBy(String::length));
    </pre>
 10. **formatted** method added to String Class: Helps to format the text blocks string
@@ -108,10 +108,27 @@ This Demonstrates some major Java New Features starting from Java 9 to Java 17 a
 12. **Enhancements to Z Garbage Collector**: returns the unused memory to the OS of the host. uncommit capability enabled by default. performance improvement made
 
 ## Java 14:
-1. **Switch Expressions**: made general available with yield keyword introduction from JDK 13
-   ![image](https://github.com/girichippada/Java-new-api/assets/57904222/bba82cfa-6f59-47bd-a33b-42cb2dd05f83)
-
-3. 
+1. **Switch Expressions**: made generally available with yield keyword introduction from JDK 13
+2. **HelpfulNullPointerExceptions**: Writes helpful additional information to the log for NullPointerExceptions and denotes exactly it caused by which field exactly caused it
+3. **Records**: A preview feature: helps to model data as data by automatically generating required methods for POJO classes that are just data carriers for example DTO classes
+4. **pattern matching for instanceof**: enables to create pattern matching variable when checking the object type using instanceof keyword:
+   <pre>
+      if(object instanceof String result){
+         System.out.println(result.toUpperCase());
+      }else if(object instanceof Date result){
+         System.out.println(result.getTime());
+      }
+   </pre>
+   is a replacement for:
+   <pre>
+      if(object instanceof String){
+         String result = (String) object;
+         System.out.println(result.toUpperCase());
+      }else if(object instanceof Date){
+         Date result = (Date) object;
+         System.out.println(result.getTime());
+      }
+   </pre>
    
 Reference: https://docs.oracle.com/javase/9/whatsnew/toc.htm#JSNEW-GUID-825576B5-203C-4C8D-85E5-FFDA4CA0B346
 
