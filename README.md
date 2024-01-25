@@ -81,14 +81,37 @@ This Demonstrates some major Java New Features starting from Java 9 to Java 17 a
 
 1. **Compact Number Formatting:** To represent numbers in compact form like 1k for 1000, 1M for 1 million, etc, we can do so by <code>NumberFormat fmt = NumberFormat.getCompactNumberInstance(Locale.US, NumberFormat.style.SHORT); fmt.format(1000); //1K </code>
 2. ***teeing collector:** Provides the ability to multiple collectors for a stream and merge the result. for e.g., <code> List<String> input = List.of("Learning", "Java 12", "Features"); input.stream(Collectors.teeing(Collectors.joining(" "), Collectors.counting(), Statistics::new //passes two collectors data to the merged instance); </code>
-3. **<code>Files.mismatch</code>:** Files.mismatch method introduced to compare two files data. if both file content is equal, then -1 will be returned. if both file size is the same but some mismatch in data, then the first mismatch byte position will be returned. if there is a mismatch in file size then the file having a small size is returned
+3. **<code>Files.mismatch</code>:** Files.mismatch method introduced to compare two files data. if both file contents is equal, then -1 will be returned. if both file size is the same but some mismatch in data, then the first mismatch byte position will be returned. if there is a mismatch in file size then the file having a small size is returned
 4. **Shenandoah Garbage Collector Introduced:** Most concurrent GC with low GC pause time. experimental feature
 5. **indent method introduced in String class:** add n no of spaces to do indentation for each line. <code>input.indent(4);</code>
 6. **transform method introduced in String class:** applies a transformation to a string using a lambda function or a method reference. E.g.,  <code>inout.transform(String::toUpperCase).transform(str -> str.replace("\\W+", "-"));</code>
-7. **Introduction of Java Microbenchmark Harness (JMH):** JMH is developed as a separate project for benchmarking the Java code. When written code with JMH annotations: @Benchmark, JMH runs the code in n (5 by default) of JVMs and n(5 by default) no of iterations for each JVM and produces results for each benchmark method. The higher the score, the better the performance. Very useful for performance-critical areas of the code
+7. **Introduction of Java Microbenchmark Harness (JMH):** JMH is developed as a separate project for benchmarking the Java code. When writing code with JMH annotations: @Benchmark, JMH runs the code in n (5 by default) of JVMs and n(5 by default) no of iterations for each JVM and produces results for each benchmark method. The higher the score, the better the performance. Very useful for performance-critical areas of the code
 
-   
+## Java 13:
+1. Reimplementation of **Legacy Socket API** in JDK 13 to replace **java.net.Socket & java.net.ServerSocket**
+2. Issues with Legacy Socket API: Difficult to maintain and a lot of concurrency issues
+3. The new implementation is **NioSocketImpl**- easy to maintain, debug and also future proof
+4. It uses Concurrent locking instead of synchronization
+5. better compatibility with Project Loom
+6. **Dynamic CDK Archives**: Allows to generate CDK archives for built-in class loaders and user-defined class loaders
+7. **TextBlocks**: Preview feature: Allows to write multi-line strings without having escape characters and provides more readable code
+8. **stripIndent** method added to String Class: Allows incidental white spaces and indents the string. especially useful JSON strings
+9. **translateEscapes** method added to String Class: Allows to remove all escape characters in the string and hence helps to produce readable multi-line string which has escape characters in it:
+   <pre>
+      inputString <br>
+         .filter(Predicate.not(String::isEmpty)) <br>
+         .map(String.translateEscapes)   <br>
+         .collect(Collectors.groupingBy(String::length));
+   </pre>
+10. **formatted** method added to String Class: Helps to format the text blocks string
+11. **switch Expression** Enhanced Preview feature: replaced break with yield when we need to return for a case in switch if it has more than 1 line in that case
+12. **Enhancements to Z Garbage Collector**: returns the unused memory to the OS of the host. uncommit capability enabled by default. performance improvement made
 
+## Java 14:
+1. **Switch Expressions**: made general available with yield keyword introduction from JDK 13
+   ![image](https://github.com/girichippada/Java-new-api/assets/57904222/bba82cfa-6f59-47bd-a33b-42cb2dd05f83)
+
+3. 
    
 Reference: https://docs.oracle.com/javase/9/whatsnew/toc.htm#JSNEW-GUID-825576B5-203C-4C8D-85E5-FFDA4CA0B346
 
