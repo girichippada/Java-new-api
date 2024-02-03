@@ -176,8 +176,20 @@ This Demonstrates some major Java New Features starting from Java 9 to Java 17 a
 10. **jpackage command introduced**: can be useful for packaging self-contained java applications. for example, desktop Java applications or command-line Java applications. generate the executable file specific to the host operating system
 
 ## Java 17:
-1. **Sealed classes made generally available**:
-Reference: https://docs.oracle.com/javase/9/whatsnew/toc.htm#JSNEW-GUID-825576B5-203C-4C8D-85E5-FFDA4CA0B346
+1. **Sealed classes made generally available**
+2. **--illeagal-access jvm option is removed**: --illeagal-access option allows to access jdk internals which can use security and code maintainability issues. Hence, removed in JDK 17
+3. **deprecated for removal**: SecurityManager, AppletAPI(as support from browser vendors removed), RMi Activation
+4. **Pattern matching for Switch: A preview feature**: Allows to use case elevel variables without having to check for instanceof and casting the variables before accessing
+
+
+References: 
+https://docs.oracle.com/javase/9/whatsnew/toc.htm#JSNEW-GUID-825576B5-203C-4C8D-85E5-FFDA4CA0B346
+https://openjdk.org/projects/jdk/17/
+https://openjdk.org/projects/jdk/
+
+# **Next Big things:**
+1. Project Loom: https://openjdk.org/projects/loom/      :    https://developer.okta.com/blog/2022/08/26/state-of-java-project-loom
+2. Project Valhalla: https://openjdk.org/projects/valhalla/
 
 
 
