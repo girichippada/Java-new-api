@@ -129,7 +129,30 @@ This Demonstrates some major Java New Features starting from Java 9 to Java 17 a
          System.out.println(result.getTime());
       }
    </pre>
-   
+
+## Java 15:
+1. **Records**: made generally available: Records are data carrier that extends Record class internally. All instance variables are final by default. out of the box provides implementation of toString. equals and hashCode methods and provides read only access to variables using out of box created methods based on record variables
+2. Records can be used to replace DTO classes and where just carrying the state is the requirement but not having any functionality
+3. Records can be used in Stream operation and can be useful if need to return multiple elements from a single stream operation. For ex., to find both min and max profit products in a stream operation
+4. local records can be created. i.e., records can be created in a method or in a class which will be local visibility to that method or the class where created
+5. **mapMulti introduced in stream api**: Useful for working on one to many objects in a stream operation where we generally use flatMap. The advantage with mapMulti is it doesn't create new stream for each element in the stream operation unlike flatMap and it just collects the objects instead:
+   <pre>
+   List<String> famousMovieCast = </String>movies.stream()
+      .filter(movie -> movie.name().equals("famous first movie")
+      .<String>mapMulti((movie, consumer) -> {
+         List<Cast> cast: movie.getCast();
+         for(String: actor: cast){
+            consumer.accept(actor);
+         }
+      }).toList();
+   </pre>
+   with compared to flatMap way:
+   <pre>
+   List<String> famousMovieCast = movies.stream()
+      .filter(movie -> movie.name().equals("famous first movie")
+      .flatMap(movie -> movie.cast().stream()
+      .toList();
+   </pre>
 Reference: https://docs.oracle.com/javase/9/whatsnew/toc.htm#JSNEW-GUID-825576B5-203C-4C8D-85E5-FFDA4CA0B346
 
 
