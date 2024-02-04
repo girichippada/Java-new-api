@@ -84,7 +84,7 @@ This Demonstrates some major Java New Features starting from Java 9 to Java 17 a
 11. **JavaFX moved to openJFX**: JavaFX will not be bundled along with JDK starting from JDK 11 and will be available in OpenJFX: https://openjfx.io/
 12. **Single file source code file:** no need to use javac to compile. can be used directly with the java command which compiles in in-memory for single source files
 13. **Files.readString and Files.writeString:** methods introduced to read file data as a string and write a string to file respectively. readString and writeString methods read and write whole file data at once. if we are dealing with large files, consider using Files.lines method e.g., <pre>Files.lines(Paths.get(FILE_PATH);</pre>
-14. **Predicate.not:** predicate.not method is introduced to do a negate in a readable way. E.g., line.filter(Predicate.not(String::isBlank).collect(Collectors.toList());
+14. **Predicate.not:** predicate.not method is introduced to do a negate in a readable way. E.g., <pre>line.filter(Predicate.not(String::isBlank).collect(Collectors.toList());</pre>
 15. **Flight Recorder:** To start the Flight recorder, use the command: <pre>java -XX:StartFlightRecording=duration=60s,filename=recording.jfr APP </pre>. To start flight recording for already running jvm, first run: jcmd and get the PID. then, <pre>jcmd <PID> JFR.start duration=60s filename=recording.jfr</pre>
 16. **JDK Mission Control:** Can be used to visualize jfr files data
 
