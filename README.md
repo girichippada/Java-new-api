@@ -108,6 +108,7 @@ This Demonstrates some major Java New Features starting from Java 9 to Java 17 a
       inout.transform(String::toUpperCase).transform(str -> str.replace("\\W+", "-"));
    </pre>
 7. **Introduction of Java Microbenchmark Harness (JMH):** JMH is developed as a separate project for benchmarking the Java code. When writing code with JMH annotations: @Benchmark, JMH runs the code in n (5 by default) of JVMs and n(5 by default) no of iterations for each JVM and produces results for each benchmark method. The higher the score, the better the performance. Very useful for performance-critical areas of the code
+   refer [link](/java12/JMH_Setup.txt)
 
 ## Java 13:
 1. Reimplementation of **Legacy Socket API** in JDK 13 to replace **java.net.Socket & java.net.ServerSocket**

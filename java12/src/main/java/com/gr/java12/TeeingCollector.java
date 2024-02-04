@@ -33,7 +33,7 @@ class Statistics{
 	
 	@Override
 	public String toString() {
-		return "Data : " + data + " has a word count of: " + noOfWords;
+		return "Data : " + data + ", has a word count of: " + noOfWords;
 	}
 }
 

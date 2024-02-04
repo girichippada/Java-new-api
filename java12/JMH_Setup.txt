@@ -1,0 +1,15 @@
+1.Setup the benchmark project
+
+mvn archetype:generate \
+   -DinteractiveMode=false \
+   -DarchetypeGroupId=org.openjdk.jmh \
+   -DarchetypeArtifactId=jmh-java-benchmark-archetype \
+   -DgroupId=com.demo.jmh \
+   -DartifactId=test \
+   -Dversion=1.0
+
+2.Build the benchmark
+  mvn clean verify
+
+3.Run the benchmark
+  java -jar target/benchmarks.jar
