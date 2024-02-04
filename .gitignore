@@ -1,1 +1,32 @@
 /out/
+## maven
+**/target/
+
+## eclipse
+**/.project
+**/.settings
+**/.classpath
+
+## intellij idea
+# See https://intellij-support.jetbrains.com/hc/en-us/articles/206544839-How-to-manage-projects-under-Version-Control-Systems
+**/*.iml
+/.idea/
+
+**/nbactions.xml
+
+**/*-local.yml
+**/*-local-test.yml
+
+/logs
+
+.DS_Store
+/java-8/target/
+/java9/target/
+/java10/target/
+/java11/target/
+/java12/target/
+/java13/target/
+/java14/target/
+/java15/target/
+/java16/target/
+/java17/target/

@@ -1,0 +1,18 @@
+package com.gr.java11; #!D:\jdk-11\bin\java --source 11
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
+public class ListFiles{
+	public static void main(String [] args) throws IOException{
+		var directory = ".";
+		if(args.length == 0){
+			System.out.println("Fetching contents of current directory");
+		} else{
+		    directory = args[0];
+		}
+	    Files.walk(Paths.get(directory))
+	         .forEach(System.out::println);
+	}
+}
