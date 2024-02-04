@@ -72,7 +72,7 @@ This Demonstrates some major Java New Features starting from Java 9 to Java 17 a
        5. can handle terra bytes of the heap size
        6. experimental in JDK 11 and only released for Linux x86 64-bit platform
 8. **Removal of out of the box JAVA EE and Corba Modules:** Couple of modules out of the box provided in Java se are evolved as third-party libraries or dependencies in Maven central. Hence Java team decided to remove these modules and the applications using these modules must add the dependencies explicitly in the maven or gradle.
-   1. **JAX**: The module was removed and the replacement is Jakarta as JAVA EE handed over from Oracle to Eclipse foundation
+   1. **JAXB**: The module was removed and the replacement is Jakarta as JAVA EE handed over from Oracle to Eclipse foundation
    2. **JAX-WS**
    3. **JAF(Java activation framework)**
    4. **java.se.ee**
@@ -83,19 +83,19 @@ This Demonstrates some major Java New Features starting from Java 9 to Java 17 a
 10. **Nashorn deprecated and will be removed**: challenges in maintainance. alternative is GralVM
 11. **JavaFX moved to openJFX**: JavaFX will not be bundled along with JDK starting from JDK 11 and will be available in OpenJFX: https://openjfx.io/
 12. **Single file source code file:** no need to use javac to compile. can be used directly with the java command which compiles in in-memory for single source files
-13. **Files.readString and Files.writeString:** methods introduced to read file data as a string and write a string to file respectively. readString and writeString methods read and write whole file data at once. if we are dealing with large files, consider using Files.lines method e.g., Files.lines(Paths.get(FILE_PATH);
+13. **Files.readString and Files.writeString:** methods introduced to read file data as a string and write a string to file respectively. readString and writeString methods read and write whole file data at once. if we are dealing with large files, consider using Files.lines method e.g., <pre>Files.lines(Paths.get(FILE_PATH);</pre>
 14. **Predicate.not:** predicate.not method is introduced to do a negate in a readable way. E.g., line.filter(Predicate.not(String::isBlank).collect(Collectors.toList());
-15. **Flight Recorder:** To start the Flight recorder, use the command: java -XX:StartFlightRecording=duration=60s,filename=recording.jfr APP. To start flight recording for already running jvm, first run: jcmd and get the PID. then, jcmd <PID> JFR.start duration=60s filename=recording.jfr
+15. **Flight Recorder:** To start the Flight recorder, use the command: <pre>java -XX:StartFlightRecording=duration=60s,filename=recording.jfr APP </pre>. To start flight recording for already running jvm, first run: jcmd and get the PID. then, <pre>jcmd <PID> JFR.start duration=60s filename=recording.jfr</pre>
 16. **JDK Mission Control:** Can be used to visualize jfr files data
 
 ## Java 12:
 
-1. **Compact Number Formatting:** To represent numbers in compact form like 1k for 1000, 1M for 1 million, etc, we can do so by <code>NumberFormat fmt = NumberFormat.getCompactNumberInstance(Locale.US, NumberFormat.style.SHORT); fmt.format(1000); //1K </code>
-2. ***teeing collector:** Provides the ability to multiple collectors for a stream and merge the result. for e.g., <code> List<String> input = List.of("Learning", "Java 12", "Features"); input.stream(Collectors.teeing(Collectors.joining(" "), Collectors.counting(), Statistics::new //passes two collectors data to the merged instance); </code>
-3. **<code>Files.mismatch</code>:** Files.mismatch method introduced to compare two files data. if both file contents is equal, then -1 will be returned. if both file size is the same but some mismatch in data, then the first mismatch byte position will be returned. if there is a mismatch in file size then the file having a small size is returned
+1. **Compact Number Formatting:** To represent numbers in compact form like 1k for 1000, 1M for 1 million, etc, we can do so by <pre>NumberFormat fmt = NumberFormat.getCompactNumberInstance(Locale.US, NumberFormat.style.SHORT); fmt.format(1000); //1K </pre>
+2. ***teeing collector:** Provides the ability to multiple collectors for a stream and merge the result. for e.g., <pre> List<String> input = List.of("Learning", "Java 12", "Features"); input.stream(Collectors.teeing(Collectors.joining(" "), Collectors.counting(), Statistics::new //passes two collectors data to the merged instance); </pre>
+3. **<code>Files.mismatch</code>:** Files.mismatch method introduced to compare two files data. if both file contents are equal, then -1 will be returned. if both file sizes are the same but some mismatch in data, then the first mismatch byte position will be returned. if there is a mismatch in file size then the file having a small size is returned
 4. **Shenandoah Garbage Collector Introduced:** Most concurrent GC with low GC pause time. experimental feature
 5. **indent method introduced in String class:** add n no of spaces to do indentation for each line. <code>input.indent(4);</code>
-6. **transform method introduced in String class:** applies a transformation to a string using a lambda function or a method reference. E.g.,  <code>inout.transform(String::toUpperCase).transform(str -> str.replace("\\W+", "-"));</code>
+6. **transform method introduced in String class:** applies a transformation to a string using a lambda function or a method reference. E.g.,  <pre>inout.transform(String::toUpperCase).transform(str -> str.replace("\\W+", "-"));</pre>
 7. **Introduction of Java Microbenchmark Harness (JMH):** JMH is developed as a separate project for benchmarking the Java code. When writing code with JMH annotations: @Benchmark, JMH runs the code in n (5 by default) of JVMs and n(5 by default) no of iterations for each JVM and produces results for each benchmark method. The higher the score, the better the performance. Very useful for performance-critical areas of the code
 
 ## Java 13:
