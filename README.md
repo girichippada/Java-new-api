@@ -90,12 +90,23 @@ This Demonstrates some major Java New Features starting from Java 9 to Java 17 a
 
 ## Java 12:
 
-1. **Compact Number Formatting:** To represent numbers in compact form like 1k for 1000, 1M for 1 million, etc, we can do so by <pre>NumberFormat fmt = NumberFormat.getCompactNumberInstance(Locale.US, NumberFormat.style.SHORT); fmt.format(1000); //1K </pre>
-2. ***teeing collector:** Provides the ability to multiple collectors for a stream and merge the result. for e.g., <pre> List<String> input = List.of("Learning", "Java 12", "Features"); input.stream(Collectors.teeing(Collectors.joining(" "), Collectors.counting(), Statistics::new //passes two collectors data to the merged instance); </pre>
+1. **Compact Number Formatting:** To represent numbers in compact form like 1k for 1000, 1M for 1 million, etc, we can do so by
+   <pre>
+      NumberFormat fmt = NumberFormat.getCompactNumberInstance(Locale.US, NumberFormat.style.SHORT);
+      fmt.format(1000); //1K 
+   </pre>
+2. ***teeing collector:** Provides the ability to multiple collectors for a stream and merge the result. for e.g.,
+   <pre> 
+      List<String> input = List.of("Learning", "Java 12", "Features"); 
+         input.stream(Collectors.teeing(Collectors.joining(" "), Collectors.counting(), Statistics::new //passes two collectors data to the merged instance); 
+      </pre>
 3. **<code>Files.mismatch</code>:** Files.mismatch method introduced to compare two files data. if both file contents are equal, then -1 will be returned. if both file sizes are the same but some mismatch in data, then the first mismatch byte position will be returned. if there is a mismatch in file size then the file having a small size is returned
 4. **Shenandoah Garbage Collector Introduced:** Most concurrent GC with low GC pause time. experimental feature
 5. **indent method introduced in String class:** add n no of spaces to do indentation for each line. <code>input.indent(4);</code>
-6. **transform method introduced in String class:** applies a transformation to a string using a lambda function or a method reference. E.g.,  <pre>inout.transform(String::toUpperCase).transform(str -> str.replace("\\W+", "-"));</pre>
+6. **transform method introduced in String class:** applies a transformation to a string using a lambda function or a method reference. E.g.,
+   <pre>
+      inout.transform(String::toUpperCase).transform(str -> str.replace("\\W+", "-"));
+   </pre>
 7. **Introduction of Java Microbenchmark Harness (JMH):** JMH is developed as a separate project for benchmarking the Java code. When writing code with JMH annotations: @Benchmark, JMH runs the code in n (5 by default) of JVMs and n(5 by default) no of iterations for each JVM and produces results for each benchmark method. The higher the score, the better the performance. Very useful for performance-critical areas of the code
 
 ## Java 13:
