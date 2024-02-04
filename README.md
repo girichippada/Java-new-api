@@ -71,11 +71,22 @@ This Demonstrates some major Java New Features starting from Java 9 to Java 17 a
        4. Pause time does not increase with the size of the heap
        5. can handle terra bytes of the heap size
        6. experimental in JDK 11 and only released for Linux x86 64-bit platform
-8. **Single file source code file:** no need to use javac to compile. can be used directly with the java command which compiles in in-memory for single source files
-9. **Files.readString and Files.writeString:** methods introduced to read file data as a string and write a string to file respectively. readString and writeString methods read and write whole file data at once. if we are dealing with large files, consider using Files.lines method e.g., Files.lines(Paths.get(FILE_PATH);
-10. **Predicate.not:** predicate.not method is introduced to do a negate in a readable way. E.g., line.filter(Predicate.not(String::isBlank).collect(Collectors.toList());
-11. **Flight Recorder:** To start the Flight recorder, use the command: java -XX:StartFlightRecording=duration=60s,filename=recording.jfr APP. To start flight recording for already running jvm, first run: jcmd and get the PID. then, jcmd <PID> JFR.start duration=60s filename=recording.jfr
-12. **JDK Mission Control:** Can be used to visualize jfr files data
+8. **Removal of out of the box JAVA EE and Corba Modules:** Couple of modules out of the box provided in Java se are evolved as third-party libraries or dependencies in Maven central. Hence Java team decided to remove these modules and the applications using these modules must add the dependencies explicitly in the maven or gradle.
+   1. **JAX**: The module was removed and the replacement is Jakarta as JAVA EE handed over from Oracle to Eclipse foundation
+   2. **JAX-WS**
+   3. **JAF(Java activation framework)**
+   4. **java.se.ee**
+   5. **JTA(java.transaction)(JAVA Transaction API)**
+   6. **java.xml.ws.annotation**
+   7. **CORBA(java.corba)**
+9. **Dropped support for Applets:** Because of security issues at runtime, most of the browser vendors dropped support for browser-based Applets hence Java team decided to remove it
+10. **Nashorn deprecated and will be removed**: challenges in maintainance. alternative is GralVM
+11. **JavaFX moved to openJFX**: JavaFX will not be bundled along with JDK starting from JDK 11 and will be available in OpenJFX: https://openjfx.io/
+12. **Single file source code file:** no need to use javac to compile. can be used directly with the java command which compiles in in-memory for single source files
+13. **Files.readString and Files.writeString:** methods introduced to read file data as a string and write a string to file respectively. readString and writeString methods read and write whole file data at once. if we are dealing with large files, consider using Files.lines method e.g., Files.lines(Paths.get(FILE_PATH);
+14. **Predicate.not:** predicate.not method is introduced to do a negate in a readable way. E.g., line.filter(Predicate.not(String::isBlank).collect(Collectors.toList());
+15. **Flight Recorder:** To start the Flight recorder, use the command: java -XX:StartFlightRecording=duration=60s,filename=recording.jfr APP. To start flight recording for already running jvm, first run: jcmd and get the PID. then, jcmd <PID> JFR.start duration=60s filename=recording.jfr
+16. **JDK Mission Control:** Can be used to visualize jfr files data
 
 ## Java 12:
 
