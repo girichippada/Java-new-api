@@ -200,7 +200,7 @@ Refer [this for how to setup](/java12/JMH_Setup.txt)
 10. **jpackage command introduced**: can be useful for packaging self-contained java applications. for example, desktop Java applications or command-line Java applications. generate the executable file specific to the host operating system
 
 ## Java 17:
-1. **Sealed classes made generally available**
+1. **Sealed classes made generally available**: [Sealed Classes](https://openjdk.org/jeps/409) feature is about enabling more fine-grained inheritance control in Java. Sealing allows classes and interfaces to define their permitted subtypes. In other words, a class or an interface can now define which classes can implement or extend it. It is a useful feature for domain modeling and increasing the security of libraries.
 2. **--illeagal-access jvm option is removed**: --illeagal-access option allows to access jdk internals which can use security and code maintainability issues. Hence, removed in JDK 17
 3. **deprecated for removal**: SecurityManager, AppletAPI(as support from browser vendors removed), RMi Activation
 4. **Pattern matching for Switch: A preview feature**: Allows to use case elevel variables without having to check for instanceof and casting the variables before accessing
