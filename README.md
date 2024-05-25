@@ -3,19 +3,20 @@ This Demonstrates some major Java New Features starting from Java 9 to Java 17 a
 
 ## Java 9:
 
-1. **Factory methods in Collections**: 'of' method for List, Set, and map: <code>List.of(varargs)</code>
-2. **G1 Garbage Collector**: The default GC from JDK 9 onwards
-3. Compact Strings: Uses <code>byte[]</code> to store stings instead of <code>char[]</code> as in most of the java apps, strings use 1 byte or 8 bits to improve heap consumption
-4. Use **<code>jdeps</code>** tool to analyze the Java app dependencies and it also suggests replacements for any JDK internal API usage
-5. Use **<code>jlink</code>** using <code>jlink</code> module descriptor or a custom <code>module-info.class</code> file to create a custom run time Java image of our modular applications
-6. **<code>jShell</code>** - A Java command line tool for developers to use a shell to try any Java code without having to create a class and main method
-7. introduction of allowing **private default methods in interfaces**
-8. **<code>takeWhile</code>** method for collections API to do an operation only until a condition is satisfied
-9. **<code>dropWhile</code>** method added in collections API to drop elements until a condition is satisfied i.e., exclude elements until a condition is satisfied
-10. new overloaded **<code>iterate</code> method to Collection** to iterate a collection until a condition is satisfied
-11. **<code>Stream.ofNullable()</code>** method added to return an empty stream if a value of an element of a stream is null
-12. **Modular system**: Java Modules - To restrict or specify what classes to export and what not to export in jars to avoid internal classes being exposed
-13. Allow **<code>@SafeVargs</code> on private instance methods**. E.g., https://www.tutorialspoint.com/safevarargs-annotation-for-private-methods-in-java-9#:~:text=The%20%40SafeVarargs%20annotation%20was%20introduced,operations%20on%20its%20varargs%20parameters.
+1. **Introduction of Reactive Streams**: [Reactive Streams](https://en.wikipedia.org/wiki/Reactive_Streams) is an initiative to provide a standard for asynchronous stream processing with non-blocking back pressure. For further read, see [project reactor](https://projectreactor.io/docs/core/release/reference/) implementations: Reactor is a fully non-blocking reactive programming foundation for the JVM, with efficient demand management (in the form of managing “backpressure”). It integrates directly with the Java 8 functional APIs, notably CompletableFuture, Stream, and Duration. It offers composable asynchronous sequence APIs — Flux (for [N] elements) and Mono (for [0|1] elements) — and extensively implements the Reactive Streams specification. The reactor also supports non-blocking inter-process communication with the reactor-netty project. Suited for Microservices Architecture, Reactor Netty offers backpressure-ready network engines for HTTP (including Websockets), TCP, and UDP. Reactive encoding and decoding are fully supported. Additionally, see [Spring webFlux](https://docs.spring.io/spring-framework/reference/web/webflux.html) that has a framework for using reactive streams in spring boot applications. [Here is a quick tutorial](https://dassum.medium.com/building-a-reactive-restful-web-service-using-spring-boot-and-postgres-c8e157dbc81d)
+2. **Factory methods in Collections**: 'of' method for List, Set, and map: <code>List.of(varargs)</code>
+3. **G1 Garbage Collector**: The default GC from JDK 9 onwards
+4. Compact Strings: Uses <code>byte[]</code> to store stings instead of <code>char[]</code> as in most of the java apps, strings use 1 byte or 8 bits to improve heap consumption
+5. Use **<code>jdeps</code>** tool to analyze the Java app dependencies and it also suggests replacements for any JDK internal API usage
+6. Use **<code>jlink</code>** using <code>jlink</code> module descriptor or a custom <code>module-info.class</code> file to create a custom run time Java image of our modular applications
+7. **<code>jShell</code>** - A Java command line tool for developers to use a shell to try any Java code without having to create a class and main method
+8. introduction of allowing **private default methods in interfaces**
+9. **<code>takeWhile</code>** method for collections API to do an operation only until a condition is satisfied
+10. **<code>dropWhile</code>** method added in collections API to drop elements until a condition is satisfied i.e., exclude elements until a condition is satisfied
+11. new overloaded **<code>iterate</code> method to Collection** to iterate a collection until a condition is satisfied
+12. **<code>Stream.ofNullable()</code>** method added to return an empty stream if a value of an element of a stream is null
+13. **Modular system**: Java Modules - To restrict or specify what classes to export and what not to export in jars to avoid internal classes being exposed
+14. Allow **<code>@SafeVargs</code> on private instance methods**. E.g., https://www.tutorialspoint.com/safevarargs-annotation-for-private-methods-in-java-9#:~:text=The%20%40SafeVarargs%20annotation%20was%20introduced,operations%20on%20its%20varargs%20parameters.
 14.** Enhanced Deprecation support** added: <code>@Depreacated(forRemoval = true)</code> to specify a method or class that is marked for removal later. <code>@Depreacted(since ="<version>")</code>
 15. **<code>jdeprscan</code>** command can be used to scan the deprecations in the code
 16.** Boxed primitive type constructors are deprecated**. the alternative is to use <code>valueOf()</code> method. <code>finalize()</code> method in Object is marked as deprecated. Alternatives are <code>java.lang.ref.Cleaner</code> and <code>java.lang.ref.PhantomReference</code>
