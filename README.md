@@ -242,8 +242,11 @@ https://openjdk.org/projects/jdk/17/
 https://openjdk.org/projects/jdk/
 
 # **Next Big things:**
-1. Project Loom: https://openjdk.org/projects/loom/      :    https://developer.okta.com/blog/2022/08/26/state-of-java-project-loom
-2. Project Valhalla: https://openjdk.org/projects/valhalla/
+1. **Project Loom: https://openjdk.org/projects/loom/ (JDK 21)**:    https://developer.okta.com/blog/2022/08/26/state-of-java-project-loom
+   1. **Virtual Threads**: introduce virtual threads to the Java Platform. Virtual threads are lightweight threads that dramatically reduce the effort of writing, maintaining, and observing high-throughput concurrent applications. More in: https://openjdk.org/jeps/444
+   2. **Structured Concurrency**: Simplify concurrent programming by introducing an API for structured concurrency. Structured concurrency treats groups of related tasks running in different threads as a single unit of work, thereby streamlining error handling and cancellation, improving reliability, and enhancing observability. More in: https://openjdk.org/jeps/453
+   3. **ScopedValues**: Introduce scoped values, values that may be safely and efficiently shared to methods without using method parameters. They are preferred to thread-local variables, especially when using large numbers of virtual threads. See more in: https://openjdk.org/jeps/446
+3. Project Valhalla: https://openjdk.org/projects/valhalla/
 
 
 
