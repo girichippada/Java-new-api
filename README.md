@@ -4,21 +4,44 @@ This Demonstrates some major Java New Features starting from Java 9 to Java 17 a
 ## Java 9:
 
 1. **Introduction of Reactive Streams**: [Reactive Streams](https://en.wikipedia.org/wiki/Reactive_Streams) is an initiative to provide a standard for asynchronous stream processing with non-blocking back pressure. For further read, see [project reactor](https://projectreactor.io/docs/core/release/reference/) implementations: Reactor is a fully non-blocking reactive programming foundation for the JVM, with efficient demand management (in the form of managing “backpressure”). It integrates directly with the Java 8 functional APIs, notably CompletableFuture, Stream, and Duration. It offers composable asynchronous sequence APIs — Flux (for [N] elements) and Mono (for [0|1] elements) — and extensively implements the Reactive Streams specification. The reactor also supports non-blocking inter-process communication with the reactor-netty project. Suited for Microservices Architecture, Reactor Netty offers backpressure-ready network engines for HTTP (including Websockets), TCP, and UDP. Reactive encoding and decoding are fully supported. Additionally, see [Spring webFlux](https://docs.spring.io/spring-framework/reference/web/webflux.html) that has a framework for using reactive streams in spring boot applications. [Here is a quick tutorial](https://dassum.medium.com/building-a-reactive-restful-web-service-using-spring-boot-and-postgres-c8e157dbc81d)
-2. **Factory methods in Collections**: 'of' method for List, Set, and map: <code>List.of(varargs)</code>
-3. **G1 Garbage Collector**: The default GC from JDK 9 onwards
-4. Compact Strings: Uses <code>byte[]</code> to store stings instead of <code>char[]</code> as in most of the java apps, strings use 1 byte or 8 bits to improve heap consumption
-5. Use **<code>jdeps</code>** tool to analyze the Java app dependencies and it also suggests replacements for any JDK internal API usage
-6. Use **<code>jlink</code>** using <code>jlink</code> module descriptor or a custom <code>module-info.class</code> file to create a custom run time Java image of our modular applications
-7. **<code>jShell</code>** - A Java command line tool for developers to use a shell to try any Java code without having to create a class and main method
-8. introduction of allowing **private default methods in interfaces**
-9. **<code>takeWhile</code>** method for collections API to do an operation only until a condition is satisfied
-10. **<code>dropWhile</code>** method added in collections API to drop elements until a condition is satisfied i.e., exclude elements until a condition is satisfied
-11. new overloaded **<code>iterate</code> method to Collection** to iterate a collection until a condition is satisfied
-12. **<code>Stream.ofNullable()</code>** method added to return an empty stream if a value of an element of a stream is null
-13. **Modular system**: Java Modules - To restrict or specify what classes to export and what not to export in jars to avoid internal classes being exposed
-14. Allow **<code>@SafeVargs</code> on private instance methods**. E.g., https://www.tutorialspoint.com/safevarargs-annotation-for-private-methods-in-java-9#:~:text=The%20%40SafeVarargs%20annotation%20was%20introduced,operations%20on%20its%20varargs%20parameters.
+2. **New features added to <code>CompletableFuture</code>:**
+   1. **<code>orTimeout(long timeout, TimeUnit unit)</code>**: This method allows you to specify a timeout for a CompletableFuture. If the future is not completed within the specified time, it will be completed exceptionally with a TimeoutException:
+      <pre>
+         CompletableFuture<String> future = CompletableFuture.supplyAsync(() -> {
+         // Simulating a long task
+         try { Thread.sleep(3000); } catch (InterruptedException e) {}
+             return "Result";
+         }).orTimeout(2, TimeUnit.SECONDS);
+      </pre>
+      
+   2. **<code>completeOnTimeout(T value, long timeout, TimeUnit unit)</code>**: Similar to orTimeout, but instead of completing exceptionally, it completes with a default value if the timeout is reached.
+      <pre>
+         CompletableFuture<String> future = CompletableFuture.supplyAsync(() -> {
+         try { Thread.sleep(3000); } catch (InterruptedException e) {}
+          return "Actual Result";
+         }).completeOnTimeout("Default Result", 2, TimeUnit.SECONDS);
+      </pre>
+      
+   3. **<code>defaultExecutor()</code>:** This method provides a way to retrieve the default executor used by CompletableFuture. It allows more control over the executor service if you need to use a             different one or want to know what the default is.
+      
+   4. **<code>newIncompleteFuture()</code>**: A protected method intended for use by subclasses to create new CompletableFuture instances.
+
+   5. **<code>minimalCompletionStage()</code>** and minimalFuture(): These methods return views of the CompletableFuture that can only complete it normally. They are useful for exposing a CompletableFuture to code that should not be able to complete it exceptionally.
+3. **Factory methods in Collections**: 'of' method for List, Set, and map: <code>List.of(varargs)</code>
+4. **G1 Garbage Collector**: The default GC from JDK 9 onwards
+5. Compact Strings: Uses <code>byte[]</code> to store stings instead of <code>char[]</code> as in most of the java apps, strings use 1 byte or 8 bits to improve heap consumption
+6. Use **<code>jdeps</code>** tool to analyze the Java app dependencies and it also suggests replacements for any JDK internal API usage
+7. Use **<code>jlink</code>** using <code>jlink</code> module descriptor or a custom <code>module-info.class</code> file to create a custom run time Java image of our modular applications
+8. **<code>jShell</code>** - A Java command line tool for developers to use a shell to try any Java code without having to create a class and main method
+9. introduction of allowing **private default methods in interfaces**
+10. **<code>takeWhile</code>** method for collections API to do an operation only until a condition is satisfied
+11. **<code>dropWhile</code>** method added in collections API to drop elements until a condition is satisfied i.e., exclude elements until a condition is satisfied
+12. new overloaded **<code>iterate</code> method to Collection** to iterate a collection until a condition is satisfied
+13. **<code>Stream.ofNullable()</code>** method added to return an empty stream if a value of an element of a stream is null
+14. **Modular system**: Java Modules - To restrict or specify what classes to export and what not to export in jars to avoid internal classes being exposed
+15. Allow **<code>@SafeVargs</code> on private instance methods**. E.g., https://www.tutorialspoint.com/safevarargs-annotation-for-private-methods-in-java-9#:~:text=The%20%40SafeVarargs%20annotation%20was%20introduced,operations%20on%20its%20varargs%20parameters.
 14.** Enhanced Deprecation support** added: <code>@Depreacated(forRemoval = true)</code> to specify a method or class that is marked for removal later. <code>@Depreacted(since ="<version>")</code>
-15. **<code>jdeprscan</code>** command can be used to scan the deprecations in the code
+16. **<code>jdeprscan</code>** command can be used to scan the deprecations in the code
 16.** Boxed primitive type constructors are deprecated**. the alternative is to use <code>valueOf()</code> method. <code>finalize()</code> method in Object is marked as deprecated. Alternatives are <code>java.lang.ref.Cleaner</code> and <code>java.lang.ref.PhantomReference</code>
 17. **Allow effectively final variables** to be used as resources in the try-with-resources statement.
 18. Allow the **diamond("<>") with anonymous classes** if the argument type of the inferred type is denotable.
@@ -91,24 +114,31 @@ This Demonstrates some major Java New Features starting from Java 9 to Java 17 a
 
 ## Java 12:
 
-1. **Compact Number Formatting:** To represent numbers in compact form like 1k for 1000, 1M for 1 million, etc, we can do so by
+1.**<code>delayedExecutor(long delay, TimeUnit unit)</code>** method added in CompletableFuture: Returns an executor that schedules tasks to be executed after the given delay. This can be useful for scheduling timeout tasks or retry mechanisms.
+   <pre>
+      Executor delayedExecutor = CompletableFuture.delayedExecutor(1, TimeUnit.SECONDS);
+      CompletableFuture.runAsync(() -> {
+          System.out.println("Task executed after delay");
+      }, delayedExecutor);
+   </pre> 
+2. **Compact Number Formatting:** To represent numbers in compact form like 1k for 1000, 1M for 1 million, etc, we can do so by
    <pre>
       NumberFormat fmt = NumberFormat.getCompactNumberInstance(Locale.US, NumberFormat.style.SHORT);
       fmt.format(1000); //1K 
    </pre>
-2. ***teeing collector:** Provides the ability to multiple collectors for a stream and merge the result. for e.g.,
+3. ***teeing collector:** Provides the ability to multiple collectors for a stream and merge the result. for e.g.,
    <pre> 
       List<String> input = List.of("Learning", "Java 12", "Features"); 
          input.stream(Collectors.teeing(Collectors.joining(" "), Collectors.counting(), Statistics::new //passes two collectors data to the merged instance); 
       </pre>
-3. **<code>Files.mismatch</code>:** Files.mismatch method introduced to compare two files data. if both file contents are equal, then -1 will be returned. if both file sizes are the same but some mismatch in data, then the first mismatch byte position will be returned. if there is a mismatch in file size then the file having a small size is returned
-4. **Shenandoah Garbage Collector Introduced:** Most concurrent GC with low GC pause time. experimental feature
-5. **indent method introduced in String class:** add n no of spaces to do indentation for each line. <code>input.indent(4);</code>
-6. **transform method introduced in String class:** applies a transformation to a string using a lambda function or a method reference. E.g.,
+4. **<code>Files.mismatch</code>:** Files.mismatch method introduced to compare two files data. if both file contents are equal, then -1 will be returned. if both file sizes are the same but some mismatch in data, then the first mismatch byte position will be returned. if there is a mismatch in file size then the file having a small size is returned
+5. **Shenandoah Garbage Collector Introduced:** Most concurrent GC with low GC pause time. experimental feature
+6. **indent method introduced in String class:** add n no of spaces to do indentation for each line. <code>input.indent(4);</code>
+7. **transform method introduced in String class:** applies a transformation to a string using a lambda function or a method reference. E.g.,
    <pre>
       inout.transform(String::toUpperCase).transform(str -> str.replace("\\W+", "-"));
    </pre>
-7. **Introduction of Java Microbenchmark Harness (JMH):** JMH is developed as a separate project for benchmarking the Java code. When writing code with JMH annotations: @Benchmark, JMH runs the code in n (5 by default) of JVMs and n(5 by default) no of iterations for each JVM and produces results for each benchmark method. The higher the score, the better the performance. Very useful for performance-critical areas of the code.
+8. **Introduction of Java Microbenchmark Harness (JMH):** JMH is developed as a separate project for benchmarking the Java code. When writing code with JMH annotations: @Benchmark, JMH runs the code in n (5 by default) of JVMs and n(5 by default) no of iterations for each JVM and produces results for each benchmark method. The higher the score, the better the performance. Very useful for performance-critical areas of the code.
 Refer [this for how to setup](/java12/JMH_Setup.txt)
 
 ## Java 13:
